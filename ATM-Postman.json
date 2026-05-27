@@ -1,0 +1,56 @@
+{
+  "info": {
+    "name": "ATM - Andersen Ticket Monster",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "SUPABASE_URL",
+      "value": "https://nlqzxrpcfcqluumvyjhb.supabase.co"
+    },
+    {
+      "key": "SUPABASE_KEY",
+      "value": "sb_publishable_Y3z9E3ZfQ16ALSylqzMYkg_XbnXykBf"
+    }
+  ],
+  "item": [
+    {
+      "name": "Submit Ticket",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "apikey",        "value": "{{SUPABASE_KEY}}" },
+          { "key": "Authorization", "value": "Bearer {{SUPABASE_KEY}}" },
+          { "key": "Content-Type",  "value": "application/json" },
+          { "key": "Prefer",        "value": "return=representation" }
+        ],
+        "url": {
+          "raw": "{{SUPABASE_URL}}/rest/v1/ticket_requests",
+          "host": ["{{SUPABASE_URL}}"],
+          "path": ["rest", "v1", "ticket_requests"]
+        },
+        "body": {
+          "mode": "raw",
+          "options": { "raw": { "language": "json" } },
+          "raw": "{\n  \"submitted_by\": \"Matthew Moua\",\n  \"title\": \"Test ticket from Postman\",\n  \"description\": \"This is a test submission via Postman.\",\n  \"keywords\": [\"test\", \"postman\"],\n  \"priority\": \"Medium\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Get All Tickets",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "apikey",        "value": "{{SUPABASE_KEY}}" },
+          { "key": "Authorization", "value": "Bearer {{SUPABASE_KEY}}" }
+        ],
+        "url": {
+          "raw": "{{SUPABASE_URL}}/rest/v1/ticket_requests?order=created_at.desc",
+          "host": ["{{SUPABASE_URL}}"],
+          "path": ["rest", "v1", "ticket_requests"],
+          "query": [{ "key": "order", "value": "created_at.desc" }]
+        }
+      }
+    }
+  ]
+}
