@@ -13,11 +13,35 @@
   box-shadow: 0 4px 16px rgba(27, 43, 62, 0.1);
 }
 
+.form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.btn-ghost {
+  background: none;
+  border: 1px solid #b0bec9;
+  color: #3d5168;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.7rem;
+}
+
+.btn-ghost:hover {
+  background: #edf0f3;
+}
+
 .form-title,
 .success-title {
   font-size: 1.2rem;
   font-weight: 700;
-  margin: 0 0 1.5rem;
+  margin: 0;
   color: #1b2b3e;
   letter-spacing: 0.01em;
 }

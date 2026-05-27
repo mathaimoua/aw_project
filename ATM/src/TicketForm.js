@@ -12,6 +12,14 @@ const initialState = {
   keywords: '',
 };
 
+const testTicket = {
+  user: 'Matthew Moua',
+  title: 'Cannot access IQ+',
+  description: "I'm having issues connecting to IQ+, it says my credentials are wrong. This is my first time trying to access the platform.",
+  priority: 'Medium',
+  keywords: 'IQ+, access, first time, new user, login',
+};
+
 export default function TicketForm() {
   const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
@@ -54,6 +62,16 @@ export default function TicketForm() {
     setSubmitted(false);
   }
 
+  function handleClear() {
+    setForm(initialState);
+    setError(null);
+  }
+
+  function handleTestFill() {
+    setForm(testTicket);
+    setError(null);
+  }
+
   if (submitted) {
     return (
       <div className="ticket-card">
@@ -70,7 +88,13 @@ export default function TicketForm() {
 
   return (
     <div className="ticket-card">
-      <h2 className="form-title">Submit a Ticket</h2>
+      <div className="form-header">
+        <h2 className="form-title">Submit a Ticket</h2>
+        <div className="form-actions">
+          <button type="button" className="btn btn-ghost" onClick={handleTestFill}>Test fill</button>
+          <button type="button" className="btn btn-ghost" onClick={handleClear}>Clear</button>
+        </div>
+      </div>
       <form onSubmit={handleSubmit} noValidate>
         <div className="field">
           <label htmlFor="title">Title</label>
