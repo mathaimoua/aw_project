@@ -110,3 +110,14 @@
   font-size: 0.78rem;
   color: #7a90a4;
 }
+
+.form-error {
+  font-size: 0.875rem;
+  color: #c0392b;
+  margin-bottom: 0.5rem;
+}
+
+.btn-primary:disabled {
+  background: #a0856a;
+  cursor: not-allowed;
+}

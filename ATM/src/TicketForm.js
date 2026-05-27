@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { supabase } from './supabaseClient';
 import './TicketForm.css';
 
 const PRIORITIES = ['Low', 'Medium', 'High'];
@@ -14,23 +15,37 @@ const initialState = {
 export default function TicketForm() {
   const [form, setForm] = useState(initialState);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const payload = {
-      ...form,
+    setLoading(true);
+    setError(null);
+
+    const { error: insertError } = await supabase.from('ticket_requests').insert({
+      submitted_by: form.user,
+      title: form.title,
+      description: form.description,
+      priority: form.priority,
       keywords: form.keywords
         .split(',')
         .map((k) => k.trim())
         .filter(Boolean),
-    };
-    // Supabase insert will go here
-    console.log('Ticket submitted:', payload);
+    });
+
+    setLoading(false);
+
+    if (insertError) {
+      setError(insertError.message);
+      return;
+    }
+
     setSubmitted(true);
   }
 
@@ -112,8 +127,10 @@ export default function TicketForm() {
           </select>
         </div>
 
-        <button className="btn btn-primary" type="submit">
-          Submit ticket
+        {error && <p className="form-error">{error}</p>}
+
+        <button className="btn btn-primary" type="submit" disabled={loading}>
+          {loading ? 'Submitting…' : 'Submit ticket'}
         </button>
       </form>
     </div>
