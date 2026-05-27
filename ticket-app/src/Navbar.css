@@ -1,0 +1,54 @@
+/* Andersen brand palette
+   Navy  : #1B2B3E
+   Orange: #C85A1A
+*/
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #1b2b3e;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.navbar-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1.5rem;
+}
+
+
+.navbar-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  font-family: inherit;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.navbar-title-atm {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #c85a1a;
+}
+
+.navbar-title-divider {
+  font-size: 0.95rem;
+  color: #7a90a4;
+}
+
+.navbar-title-full {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #d6e0ea;
+  letter-spacing: 0.01em;
+}
