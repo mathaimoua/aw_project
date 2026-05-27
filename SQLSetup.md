@@ -28,7 +28,7 @@ CREATE TABLE kb_articles (
 
 -- 3. Ticket requests table
 CREATE TABLE ticket_requests (
-  id           uuid        PRIMARY KEY DEFAULT gen_random_uuid(),
+  id           serial      PRIMARY KEY,
   submitted_by text        NOT NULL,
   title        text        NOT NULL,
   description  text,
